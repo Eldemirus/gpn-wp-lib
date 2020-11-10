@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GpnWpLibComponent } from './gpn-wp-lib.component';
+import { ContentDialogComponent } from './content-dialog.component';
 
-describe('GpnWpLibComponent', () => {
-  let component: GpnWpLibComponent;
-  let fixture: ComponentFixture<GpnWpLibComponent>;
+describe('ContentDialogComponent', () => {
+  let component: ContentDialogComponent;
+  let fixture: ComponentFixture<ContentDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GpnWpLibComponent ]
+      declarations: [ ContentDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GpnWpLibComponent);
+    fixture = TestBed.createComponent(ContentDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

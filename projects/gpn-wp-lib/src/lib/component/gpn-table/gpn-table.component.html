@@ -1,0 +1,90 @@
+<div>
+
+  <div class="gfilter" *ngIf="filters.length">
+    <div *ngFor="let filter of activeFilters">
+      <div *ngIf="filter.active" class="gfilter-field">
+        <label for="input{{filter.id}}" class="label" (click)="editFilterAction(filter)">{{filter.name}}:</label>
+        <div *ngIf="filter.edit" >
+          <input *ngIf="filter.type === 'input'" id="input{{filter.id}}" matInput placeholder="{{filter.name}}"
+                 [(ngModel)]="filter.value"
+                 (focusout)="applyFilter(filter)"
+          >
+          <mat-select *ngIf="filter.type === 'select'" [(ngModel)]="filter.value">
+            <mat-option *ngFor="let option of filter.options|keyvalue" [value]="option.key">{{option.value}}</mat-option>
+          </mat-select>
+          <mat-icon class="remove" (click)="applyFilter(filter)" *ngIf="filter.edit">check</mat-icon>
+        </div>
+        <div class="filter-value"
+             *ngIf="!filter.edit"
+             (click)="filter.edit = true"
+             [ngClass]="{'empty': !filter.value}"
+        >
+          <span *ngIf="filter.type === 'input'">
+            {{filter.value ? filter.value : filter.name}}
+          </span>
+          <span *ngIf="filter.type === 'select'">
+            {{filter.value ? filter.options.get(filter.value) : filter.name}}
+          </span>
+        </div>
+        <mat-icon class="remove" (click)="deleteFilterAction(filter.id)">clear</mat-icon>
+      </div>
+    </div>
+    <div class="gfilter-field" *ngIf="addFilterMode">
+        <mat-select placeholder="выбрать" #addFilter (valueChange)="addFilterAction($event)">
+          <mat-option *ngFor="let filter of unusedFilters" [value]="filter.id" [hidden]="filter.active">
+            {{filter.name}}
+          </mat-option>
+        </mat-select>
+    </div>
+    <mat-icon class="add" (click)="selectNewFilter()">add</mat-icon>
+    <div class="filter-empty" (click)="selectNewFilter()" *ngIf="activeFilters.length === 0">добавить фильтр</div>
+  </div>
+
+  <mat-table [dataSource]="datasource" matSort>
+
+    <ng-container matColumnDef="{{column.code}}" *ngFor="let column of columns">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="['column-' + column.type, column.class?column.class:'']">
+        {{column.name}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element" [ngClass]="['column-' + column.type, column.class?column.class:'']">
+        <span *ngIf="!column.type" >
+          {{element[column.code]}}
+        </span>
+        <span *ngIf="column.type === 'link'" >
+          <a [routerLink]="[column.param, element[column.code]]">
+            {{element[column.code]}}
+          </a>
+        </span>
+        <span *ngIf="column.type === 'boolean'" >
+          <mat-icon>{{element[column.code] ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+        </span>
+        <span *ngIf="column.type === 'callback'" >
+          {{column.callback(element)}}
+        </span>
+        <span *ngIf="column.type === 'map'" >
+          {{column.options.get(element[column.code])}}
+        </span>
+        <span *ngIf="column.type === 'boolean-button'">
+          <span *ngIf="element[column.code].length">
+            <button mat-flat-button (click)="column.callback(element)">
+            <mat-icon>check_box</mat-icon>
+            </button>
+          </span>
+          <span *ngIf="!element[column.code].length">
+            <button mat-flat-button (click)="column.callback(element)">
+                <mat-icon>check_box_outline_blank</mat-icon>
+            </button>
+          </span>
+        </span>
+        <span *ngIf="column.type === 'custom'" >
+          <ng-template [ngTemplateOutlet]="getTemplate(column)" [ngTemplateOutletContext]="{$implicit: element}">
+          </ng-template>
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsShow; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsShow;"></mat-row>
+  </mat-table>
+
+</div>

@@ -1,0 +1,21 @@
+<ng-container *ngIf="!info">
+  <div *ngFor="let box of areas" class="img-area" [ngClass]="{'img-area-error': box.error}" [ngStyle]="{
+                  'left': box.left + '%',
+                  'top': box.top + '%',
+                  'bottom': box.bottom + '%',
+                  'right': box.right + '%',
+                  display: box.active ? 'block' : 'none'
+                  }">
+  </div>
+</ng-container>
+
+<ng-container *ngIf="info">
+  <div class="ai-info">
+    <div *ngFor="let box of areas" class="ai-info-item"
+         (mouseover)="showBox(box)" (mouseleave)="showBox({})" (click)="selectBox(box)"
+         [ngClass]="{'ai-info-active': box.active, 'ai-info-error': box.error}">
+      <div class="ai-info-class">{{box.class}}:</div>
+      <div class="ai-info-comment" *ngFor="let comment of box.comment">{{comment}}</div>
+    </div>
+  </div>
+</ng-container>

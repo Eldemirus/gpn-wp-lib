@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GpnWpLibComponent } from './gpn-wp-lib.component';
+import { WorkflowViewerComponent } from './workflow-viewer.component';
 
-describe('GpnWpLibComponent', () => {
-  let component: GpnWpLibComponent;
-  let fixture: ComponentFixture<GpnWpLibComponent>;
+describe('WorkflowViewerComponent', () => {
+  let component: WorkflowViewerComponent;
+  let fixture: ComponentFixture<WorkflowViewerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GpnWpLibComponent ]
+      declarations: [ WorkflowViewerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GpnWpLibComponent);
+    fixture = TestBed.createComponent(WorkflowViewerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

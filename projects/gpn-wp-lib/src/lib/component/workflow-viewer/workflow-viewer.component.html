@@ -1,0 +1,29 @@
+<div class="workflow-container">
+  <div class="workflow-statuses">
+    <app-workflow [statusList]="statusList"
+                  [code]="statusModel"
+    ></app-workflow>
+  </div>
+
+  <div class="workflow-history">
+    <mat-tab-group>
+      <mat-tab label="{{'История изменений'}}">
+        <div class="tab-content">
+          <div *ngFor="let workflowItem of workflowList" class="workflow-item">
+            <div class="card">
+              <div class="workflow-date">{{workflowItem.created|date:'dd.MM.yyyy HH:mm'}}</div>
+              <div class="workflow-details">{{workflowItem.statusName}} ({{workflowItem.createdByObject.nameFormated}}
+                )
+              </div>
+            </div>
+            <div *ngIf="commentsList.has(workflowItem.id)" class="workflow-note">
+              <app-comment [comments]="[commentsList.get(workflowItem.id)]" textOnly="true"></app-comment>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+</div>

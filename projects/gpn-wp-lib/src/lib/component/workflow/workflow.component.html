@@ -1,0 +1,13 @@
+<div class="status-item" *ngFor="let status of statusList; let index = index"
+     [ngClass]="{'active': status.key === code}">
+    <div class="step-number">{{index + 1}}</div>
+    <div class="step-arrow" *ngIf="index < statusList.length - 1">
+        <mat-icon mat-icon-button aria-label="done">
+            arrow_downward
+        </mat-icon>
+    </div>
+
+    <div class="status-step-description">
+        <div class="status-name">{{status.value}}</div>
+    </div>
+</div>

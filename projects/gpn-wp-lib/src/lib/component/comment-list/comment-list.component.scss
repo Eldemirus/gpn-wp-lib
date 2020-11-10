@@ -1,0 +1,43 @@
+.comment-container {
+  padding: 10px;
+  margin-top: 10px;
+  .comment-header {
+    margin: 0 5px 10px;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    .flex-title {
+      margin: 0;
+      display: flex;
+      flex-flow: wrap;
+      width: 100%;
+    }
+    .comment-author {
+      font-size: 16px;
+      flex-grow: 2;
+      margin: 0 15px 0 0;
+    }
+    .comment-date {
+      text-align: right;
+      opacity: 0.6;
+      margin: 0;
+    }
+  }
+  .comment-text {
+    margin: 0 35px 5px 0;
+  }
+  .mat-card-actions {
+    padding: 4px 0;
+    text-align: right;
+    height: 10px;
+
+    .comment-reply {
+      top: -25px;
+    }
+  }
+}
+
+.comment-replies {
+  margin-left: 10px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
+}

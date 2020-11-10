@@ -1,0 +1,225 @@
+<div mat-dialog-title translate>Контентный блок</div>
+<div mat-dialog-content>
+    <div class="content-type-list">
+        <div class="content-type-container" *ngFor="let item of menuList">
+            <div class="content-type card"
+                 mat-ripple
+                 (click)="setSelected(item)"
+                 [ngClass]="{'menu-item-selected': item.selected}">
+                <div class="toggle-image">
+                    <i class="material-icons">
+                        {{item.icon}}
+                    </i>
+                </div>
+                <div class="toggle-name">
+                    {{item.text}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <mat-form-field class="block">
+        <input #nameInput="ngModel"
+               [(ngModel)]="data.title" matInput
+               name="name"
+               placeholder="Заголовок">
+        <mat-hint translate>Укажите заголовок</mat-hint>
+    </mat-form-field>
+
+  <div class="content-width-selectors">
+
+    <div class="radio-group">
+        <div class="label" translate>Ширина блока</div>
+        <mat-radio-group aria-label="Select width" [(ngModel)]="data.width">
+            <mat-radio-button class="radio-button" value="100">100%</mat-radio-button>
+            <mat-radio-button class="radio-button" value="66">66%</mat-radio-button>
+            <mat-radio-button class="radio-button" value="50">50%</mat-radio-button>
+            <mat-radio-button class="radio-button" value="33">33%</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="input-group">
+      <mat-form-field class="">
+        <input #nameInput="ngModel"
+               [(ngModel)]="data.contentWidth" matInput
+               name="name"
+               type="number"
+               maxlength="3"
+               placeholder="{{'Ширина содержимого'}}">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div *ngIf="data.type === 'image'" class="edit-content">
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{'Картинка'}} <i class="material-icons done" *ngIf="data.img">check_circle</i>
+                </ng-template>
+                <div class="file-upload">
+                    <div *ngIf="data.img"
+                         [ngStyle]="{'background-image': 'url(' + (imagePath + data.img)+ ')'}"
+                         class="file-upload-preview"></div>
+                    <input (change)="uploadImage($event.target['files'])" id="input-file-id" type="file"/>
+                    <div *ngIf="!data.img" class="file-upload-icon">
+                        <i class="material-icons">cloud_upload</i>
+                        {{'Загрузите изображение'}}
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{'Файл'}} AI <i class="material-icons done" *ngIf="data.fileAi">check_circle</i>
+                </ng-template>
+                <div class="file-upload">
+                    <div class="file-upload-preview"></div>
+                    <input (change)="uploadAi($event.target['files'])" type="file"/>
+                    <div class="file-upload-icon" *ngIf="!data.fileAi">
+                        <i class="material-icons">cloud_upload</i>
+                        {{'Загрузите AI файл'}}
+                    </div>
+                    <div class="file-upload-icon-success" *ngIf="data.fileAi">
+                        <div class="file-upload-icon-success-ai"></div>
+                        {{this.data.fileAiName}}
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{'Файл'}} EPS <i class="material-icons done" *ngIf="data.fileEps">check_circle</i>
+                </ng-template>
+                <div class="file-upload">
+                    <div class="file-upload-preview"></div>
+                    <input (change)="uploadEps($event.target['files'])" type="file"/>
+                    <div class="file-upload-icon" *ngIf="!data.fileEps">
+                        <i class="material-icons">cloud_upload</i>
+                        {{'Загрузите EPS файл'}}
+                    </div>
+                    <div class="file-upload-icon-success" *ngIf="data.fileEps">
+                        <div class="file-upload-icon-success-eps"></div>
+                        {{this.data.fileEpsName}}
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+    <div *ngIf="data.type === 'file'" class="edit-content">
+          <div class="file-upload">
+            <div *ngIf="data.file"
+                class="file-upload-attach">{{data.fileName}}</div>
+            <input (change)="uploadFile($event.target['files'])" type="file"/>
+            <div *ngIf="!data.file" class="file-upload-icon">
+              <i class="material-icons">cloud_upload</i>
+              {{'Загрузите файл'}}
+            </div>
+          </div>
+    </div>
+
+    <div *ngIf="data.type === 'color-swatch'" class="color-swatch">
+        <div class="card color-swatch-add" [ngClass]="{'active' : addingColor}">
+            <button mat-icon-button color="primary" (click)="addColor()">
+                <i class="material-icons">add</i>
+            </button>
+        </div>
+
+        <div class="color-swatch-add-form" *ngIf="showEditMenu">
+            <div class="color-swatch-add-form-content">
+                <mat-form-field class="block">
+                    <input #nameInput="ngModel" [(ngModel)]="currentColor.name" matInput
+                           name="name"
+                           placeholder="{{'Название'}}">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input #nameInput="ngModel" [(ngModel)]="currentColor.rgb" matInput
+                           name="rgb"
+                           placeholder="RGB">
+                </mat-form-field>
+            </div>
+            <div class="color-swatch-add-form-content">
+                <mat-form-field class="block">
+                    <input #nameInput="ngModel" [(ngModel)]="currentColor.pantone" matInput
+                           name="pantone"
+                           placeholder="Pantone">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input #nameInput="ngModel" [(ngModel)]="currentColor.html" matInput
+                           name="html"
+                           placeholder="HTML">
+                </mat-form-field>
+            </div>
+            <div class="color-swatch-add-form-content">
+                <mat-form-field class="block">
+                    <input #nameInput="ngModel" [(ngModel)]="currentColor.cmyk" matInput
+                           name="cmyk"
+                           placeholder="CMYK">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input #nameInput="ngModel" [(ngModel)]="currentColor.ral" matInput
+                           name="ral"
+                           placeholder="RAL">
+                </mat-form-field>
+            </div>
+            <mat-form-field class="block">
+                <input #nameInput="ngModel" [(ngModel)]="currentColor.description" matInput
+                       name="description"
+                       placeholder="{{'Описание'}}">
+            </mat-form-field>
+            <div class="color-swatch-add-form-buttons">
+                <button mat-raised-button *ngIf="addingColor" color="primary" (click)="saveColor()">{{'Добавить цвет'}}
+                </button>
+                <button mat-raised-button (click)="cancelEditColor()">{{addingColor ? ('Отменить') : ('Закрыть') }}</button>
+            </div>
+
+        </div>
+
+        <h2 translate>Список цветов:</h2>
+        <div class="color-swatch-items">
+            <div class="color-swatch-item" *ngFor="let color of data.dataColors; let index = index">
+                <div class="card">
+                    <div class="color-swatch-item-preview" (click)="editColor(index)"
+                         [ngStyle]="{'background-color': color.html}"></div>
+                    <div class="color-swatch-item-info" (click)="editColor(index)">
+                        <div class="color-swatch-item-info-param">{{color.name}}</div>
+                        <div class="color-swatch-item-info-param">{{color.html}}</div>
+                    </div>
+                    <div class="color-swatch-item-actions">
+                        <button (click)="deleteColor(index)" class="component-render-delete"
+                                color="primary"
+                                mat-icon-button>
+                            <mat-icon class="mat-icon">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="data.type === 'font'" class="font">
+        <mat-form-field class="block">
+            <mat-select placeholder="{{'Шрифт'}}" name="brand" [(ngModel)]="data.dataFont" [value]="data.dataFont" required>
+                <mat-option *ngFor="let font of fontList" [value]="font.data.join(';')">
+                    {{font.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="edit-content" *ngIf="data.type !== 'color-swatch' && data.type !== 'font'">
+      <mat-form-field class="block" *ngIf="data.type === 'text'">
+        <mat-select placeholder="{{'Стиль'}}" name="textStyle" [(ngModel)]="data.textStyle" [value]="data.textStyle" required>
+          <mat-option *ngFor="let style of textStyleList" [value]="style.class">
+            {{style.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="block">
+            <textarea [(ngModel)]="data.text" rows="6" matInput name="text" placeholder="{{'Текст'}}"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">{{'Отменить'}}</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="data" >OK</button>
+</div>

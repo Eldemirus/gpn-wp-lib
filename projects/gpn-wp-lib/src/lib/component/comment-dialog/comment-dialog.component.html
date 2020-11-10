@@ -1,0 +1,16 @@
+<div mat-dialog-title>{{data['title'] ? data['title'] : 'Комментарий'}}</div>
+<div mat-dialog-content>
+  <div class="edit-content">
+    <mat-form-field class="block">
+      <textarea required [(ngModel)]="data['comment']" rows="4" matInput name="text" placeholder="{{'Текст'}}"></textarea>
+    </mat-form-field>
+  </div>
+  <ng-container *ngIf="data['commentsList']">
+    <app-comment [comments]="data['commentsList']"></app-comment>
+  </ng-container>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'Отменить'}}</button>
+  <button mat-raised-button color="primary" (click)="onOkClick()">OK</button>
+</div>

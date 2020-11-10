@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.spinner-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+
+  .mat-spinner {
+    margin: auto;
+  }
+}
+
+h2 {
+  font-weight: 100;
+  font-size: 48px;
+}
+
+.action {
+  text-align: center;
+  margin: 20px 0;
+}
+
+
+.accepted {
+  color: #2196f3;
+  font-weight: 800;
+  font-size: 48px;
+  transform: rotate(7deg);
+  border: solid 5px #2196f3;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.results-icon {
+  i {
+    opacity: 0.5;
+    font-size: 108px;
+  }
+}
+
+.at-work {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 24px;
+}
+
+.ai-container {
+  display: flex;
+  flex-flow: row;
+}
+
+.ai-image-container {
+  width: 50%;
+  margin: 10px;
+  box-sizing: border-box;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+}
+
+.ai-details {
+  width: 50%;
+  position: relative;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.ai-image {
+  position: relative;
+}
+
+.ai-box {
+  position: absolute;
+  border: 3px solid rgb(178, 255, 89);
+  border-radius: 3px;
+  background-color: rgba(178, 255, 89, 0.3);
+}
+
+.ai-box-error {
+  border: 3px solid rgb(255, 178, 89);
+  background-color: rgba(255, 178, 89, 0.3) !important;
+}
+
+.ai-box-class,
+.ai-box-comment {
+  background-color: rgba(255, 128, 255, 0.8);
+  padding: 5px;
+}
+
+.ai-box-class {
+  font-weight: 600;
+}
+
+.ai-box-comment {
+  background-color: rgba(255, 128, 255, 0.8);
+  padding: 5px;
+  opacity: 0.7;
+}
+
+.ai-info {
+  padding: 10px;
+}
+
+.ai-info-item {
+  background-color: rgba(128, 255, 128, 1);
+  opacity: 0.5;
+  padding: 5px;
+}
+
+.ai-info-error {
+  background-color: rgba(255, 128, 128, 1);
+}
+
+.ai-info-active {
+  opacity: 1;
+  box-sizing: border-box;
+}
+
+
+.ai-info-class,
+.ai-info-comment {
+  display: block;
+}
+
+.ai-info-class {
+  font-weight: 600;
+  width: 200px;
+}
+
+@media (max-width: 600px) {
+  .ai-container {
+    flex-flow: column;
+  }
+
+  .ai-image-container,
+  .spinner-container,
+  .ai-details {
+    width: 100%;
+  }
+
+}

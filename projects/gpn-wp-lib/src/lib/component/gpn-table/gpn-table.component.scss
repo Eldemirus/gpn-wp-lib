@@ -1,0 +1,68 @@
+.gfilter {
+  display: flex;
+  flex-wrap: wrap;
+  background: lightgray;
+  align-items: center;
+  .add {
+    margin: 10px;
+    cursor: pointer;
+  }
+  .filter-empty {
+    opacity: 40%;
+    margin: 10px;
+  }
+}
+
+.gfilter-field {
+  margin: 5px;
+  padding: 2px;
+  height: 30px;
+  border: 1px solid grey;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  background: white;
+  .label {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-weight: 300;
+  }
+  .remove {
+    height: 16px;
+    font-size: 16px;
+    margin-right: 1px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  input {
+    width: calc(100% - 40px);
+    border: 1px solid black;
+
+  }
+
+  .mat-select {
+    width: 150px;
+  }
+  .filter-value {
+  }
+  .empty {
+    opacity: 50%;
+  }
+
+}
+
+.column-boolean
+{
+  width: 10%;
+  max-width: 40px;
+}
+
+.column-small {
+  width: 10%;
+  max-width: 40px;
+}
+
+.column-medium {
+  width: 15%;
+  max-width: 80px;
+}

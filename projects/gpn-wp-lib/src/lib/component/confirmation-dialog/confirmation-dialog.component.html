@@ -1,0 +1,8 @@
+<h3 mat-dialog-title class="light-theme">{{data.title}}</h3>
+<div mat-dialog-content>
+  {{data.message}}
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="onYesClick()">ОК</button>
+  <button mat-button (click)="onNoClick()">Отмена</button>
+</div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GpnWpLibComponent } from './gpn-wp-lib.component';
+import { AiComponent } from './ai.component';
 
-describe('GpnWpLibComponent', () => {
-  let component: GpnWpLibComponent;
-  let fixture: ComponentFixture<GpnWpLibComponent>;
+describe('AiComponent', () => {
+  let component: AiComponent;
+  let fixture: ComponentFixture<AiComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GpnWpLibComponent ]
+      declarations: [ AiComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GpnWpLibComponent);
+    fixture = TestBed.createComponent(AiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
