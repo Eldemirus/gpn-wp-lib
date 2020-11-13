@@ -21,5 +21,8 @@
         "dist/gpn-wp-lib"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
   }
 }
