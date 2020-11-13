@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {AppService} from '../../../../../../src/app/app.service';
 import {Comment} from '../../common/_models/comment';
 
 /**
@@ -25,7 +24,7 @@ export class CommentDialogComponent implements OnInit {
    * Конструктор.
    */
   constructor(
-    private appService: AppService,
+    // private appService: AppService,
     public dialogRef: MatDialogRef<CommentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ICommentData) {
   }
@@ -39,11 +38,10 @@ export class CommentDialogComponent implements OnInit {
 
   onOkClick(): void {
     const comment: Comment = new Comment({post_message: this.data.comment});
-    comment.authorName = this.appService.getUser().email;
+    // comment.authorName = this.appService.getUser().email;
     this.data.commentsList.push(comment);
   }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
   }
 }

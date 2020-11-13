@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {ContentItem} from '../../common/_models/content-item';
-import {MenuItem} from '../../../../../../src/app/_models/menu-item';
 import {Color} from 'projects/gpn-wp-lib/src/lib/common/_models/color';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatListOption, MatSelectionList} from '@angular/material/list';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MenuItem} from '../../common/_models/menu-item';
 
 @Component({
-  selector: 'app-content-dialog',
+  selector: 'gpnwp-content-dialog',
   templateUrl: './content-dialog.component.html',
   styleUrls: ['./content-dialog.component.scss']
 })
@@ -114,9 +114,9 @@ export class ContentDialogComponent implements OnInit, AfterViewInit {
 
   /**
    * Устанавливает выделенный элемент.
-   * @param selectedItem
+   * @param selectedItem MenuItem
    */
-  setSelected(selectedItem: MenuItem) {
+  setSelected(selectedItem: MenuItem): void {
     for (const item of this.menuList) {
       item.selected = false;
     }
@@ -134,7 +134,7 @@ export class ContentDialogComponent implements OnInit, AfterViewInit {
   /**
    * Загружает изображение.
    */
-  uploadImage(image) {
+  uploadImage(image): void {
     this.data.img = image.item(0);
   }
 
@@ -162,7 +162,7 @@ export class ContentDialogComponent implements OnInit, AfterViewInit {
   /**
    * Добавление цвета
    */
-  addColor() {
+  addColor(): void {
     this.showEditMenu = true;
     this.addingColor = true;
     this.currentColor = new Color();
@@ -171,7 +171,7 @@ export class ContentDialogComponent implements OnInit, AfterViewInit {
   /**
    * Сохранение цвета
    */
-  saveColor() {
+  saveColor(): void {
     if (this.addingColor) {
       const colorArray = this.data.dataColors ? this.data.dataColors : [];
       colorArray.push(new Color(this.currentColor));
@@ -184,21 +184,21 @@ export class ContentDialogComponent implements OnInit, AfterViewInit {
   /**
    * Удаление цвета
    */
-  deleteColor(index) {
+  deleteColor(index): void {
     this.data.dataColors.splice(index, 1);
   }
 
   /**
    * Удаление цвета
    */
-  deleteFontSize(index) {
+  deleteFontSize(index): void {
     this.data.dataFontSize.splice(index, 1);
   }
 
   /**
    * Отмена редактирования цвета
    */
-  cancelEditColor() {
+  cancelEditColor(): void {
     this.showEditMenu = false;
     this.addingColor = false;
   }
@@ -206,13 +206,13 @@ export class ContentDialogComponent implements OnInit, AfterViewInit {
   /**
    * Редактирование цвета
    */
-  editColor(index) {
+  editColor(index): void {
     this.currentColor = this.data.dataColors[index];
     this.showEditMenu = true;
     this.addingColor = false;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.selectionList) {
       this.selectionList.selectedOptions = new SelectionModel<MatListOption>(false);
     }

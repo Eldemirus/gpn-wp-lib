@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ApiResponse} from '../../../../../../src/app/_models/api-response';
 import {IAiValidatorService} from './i-ai-validator.service';
+import {ApiResponse} from '../../common/_models/api-response';
 
 @Injectable()
 export class AiValidatorService {
@@ -45,7 +45,7 @@ export class AiValidatorService {
   /**
    * инициализация
    */
-  init() {
+  init(): void {
     // this.validateService = serviceProvider;
     this.inProgress = false;
     this.done = false;
@@ -54,7 +54,7 @@ export class AiValidatorService {
   /**
    * Запускает проверку.
    */
-  start(objectId: number, width: number, height: number) {
+  start(objectId: number, width: number, height: number): void {
 
     this.width = width;
     this.height = height;
@@ -67,7 +67,7 @@ export class AiValidatorService {
    * Проверка через AI.
    * @param retry - номер повтора запроса
    */
-  private validateFileByAI(retry: number) {
+  private validateFileByAI(retry: number): void {
     window.setTimeout(() => {
       this.inProgress = false;
       this.done = true;

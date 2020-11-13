@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {KeyValue} from '../../common/_models/key-value';
 
 @Component({
-  selector: 'app-workflow',
+  selector: 'gpnwp-workflow',
   templateUrl: './workflow.component.html',
   styleUrls: ['./workflow.component.scss']
 })

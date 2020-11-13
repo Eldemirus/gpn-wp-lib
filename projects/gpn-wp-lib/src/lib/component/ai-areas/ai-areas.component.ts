@@ -14,14 +14,14 @@ interface IBox {
 }
 
 @Component({
-  selector: 'app-ai-areas',
+  selector: 'gpnwp-ai-areas',
   templateUrl: './ai-areas.component.html',
   styleUrls: ['./ai-areas.component.scss']
 })
 export class AiAreasComponent {
   @Input() areas: IBox[];
   @Input()
-  get info() {return this.iInfo; }
+  get info(): any {return this.iInfo; }
   set info(value: any) {this.iInfo  = coerceBooleanProperty(value); }
   @Output() select = new EventEmitter<any>();
 
@@ -30,11 +30,11 @@ export class AiAreasComponent {
 
   constructor() { }
 
-  selectBox(box: any) {
+  selectBox(box: any): void {
     this.select.emit(box);
   }
 
-  showBox(ibox: any) {
+  showBox(ibox: any): void {
     for (const box of this.areas) {
       box.active = (ibox.id === box.id);
     }

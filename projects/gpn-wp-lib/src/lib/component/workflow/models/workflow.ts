@@ -1,7 +1,7 @@
 /**
  * Запись о переходе на шаг рабочего процесса.
  */
-import {User} from '../../../../../../../src/app/_models/user';
+import {User} from '../../../common/_models/user';
 
 export class Workflow {
   id: number;

@@ -3,7 +3,7 @@ import {KeyValue} from '../../common/_models/key-value';
 import {Workflow} from '../workflow/models/workflow';
 
 @Component({
-  selector: 'app-workflow-viewer',
+  selector: 'gpnwp-workflow-viewer',
   templateUrl: './workflow-viewer.component.html',
   styleUrls: ['./workflow-viewer.component.scss']
 })
@@ -27,7 +27,7 @@ export class WorkflowViewerComponent implements OnInit {
 
   @Output() statusChange = new EventEmitter();
 
-  get status() {
+  get status(): any {
     return this.statusModel;
   }
 

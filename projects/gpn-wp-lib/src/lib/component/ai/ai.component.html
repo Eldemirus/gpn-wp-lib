@@ -2,7 +2,7 @@
     <div class="ai-image-container">
         <div class="ai-image">
             <img [src]="image" id="img-ai" alt="" *ngIf="image !== ''" (load)="getImgSize($event)">
-            <app-ai-areas [areas]="validatorService.boxes"></app-ai-areas>
+            <gpnwp-ai-areas [areas]="validatorService.boxes"></gpnwp-ai-areas>
         </div>
     </div>
     <div class="ai-details">
@@ -19,6 +19,6 @@
             </div>
             <div class="at-work">{{validatorService.comment}}</div>
         </div>
-        <app-ai-areas [areas]="validatorService.boxes" info></app-ai-areas>
+        <gpnwp-ai-areas [areas]="validatorService.boxes" info></gpnwp-ai-areas>
     </div>
 </div>
